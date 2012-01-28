@@ -1,13 +1,24 @@
 <html>
   <head>
-    <script src='./src/game.js' type='application/javascript'></script>
+    <title>Galaxy</title>
   </head>
 
   <body>
     <div id='container'>
-      <canvas id='canvas-container'>
-
-      </canvas>
+      <canvas id='canvas-container' width='640' height='480'></canvas>
     </div>
+
+    <!-- load base classes for events and animations -->
+    <script src='./src/base/animation.js' type='application/javascript'></script>
+    <script src='./src/base/events.js' type='application/javascript'></script>
+
+    <!-- load models of game -->
+    <script src='./src/models/player.js' type='application/javascript'></script>
+
+    <!-- configure game objects -->
+    <script src='./src/game.js' type='application/javascript'></script>
+
+    <!-- start game on the complete page loading -->
+    <script src='./src/application.js' type='application/javascript'></script>
   </body>
 </html
