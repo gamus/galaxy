@@ -1,38 +1,42 @@
-Game = {};
-
-Game.FPS = 60;
-
-Game.init = function(context, options) {
+var Game = function(context, options) {
   options = options || {};
 
   this.entities = [];
+  this.maps = [];
+
   this.context = context;
 
-  this.WIDTH = options.WIDTH || 640;
-  this.HEIGHT = options.HEIGHT || 480;
+  this.width = options.width || 640;
+  this.height = options.height || 480;
 
   this.initializeModels();
 };
 
-Game.initializeModels = function() {
-  this.entities.push(new Player(this));
+Game.FPS = 60;
+
+Game.prototype.initializeModels = function() {
+  this.player = new Player(this);
 };
 
-Game.draw = function(interpolation) {
-  this.context.clearRect(0, 0, this.WIDHT, this.HEIGHT);
+Game.prototype.draw = function(interpolation) {
+  this.context.clearRect(0, 0, this.width, this.height);
+
+  this.player.draw(interpolation);
 
   for(var i = 0; i < this.entities.length; i++) {
     this.entities[i].draw(interpolation);
   }
 };
 
-Game.update = function() {
+Game.prototype.update = function() {
+  this.player.update();
+
   for(var i = 0; i < this.entities.length; i++) {
     this.entities[i].update();
   }
 };
 
-Game.run = (function() {
+Game.prototype.run = (function() {
   var loops = 0, skipTicks = 1000 / Game.FPS,
       maxFrameSkip = 10,
       nextGameTick = (new Date).getTime();
@@ -41,15 +45,15 @@ Game.run = (function() {
     loops = 0;
 
     while((new Date).getTime() > nextGameTick && loops < maxFrameSkip) {
-      Game.update();
+      this.update();
       nextGameTick += skipTicks;
       loops++;
     }
 
     if (!loops) {
-      Game.draw((nextGameTick - (new Date).getTime()) / skipTicks);
+      this.draw((nextGameTick - (new Date).getTime()) / skipTicks);
     } else {
-      Game.draw(0);
+      this.draw(0);
     }
   };
 })();

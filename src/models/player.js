@@ -14,11 +14,11 @@ Player.prototype.update = function() {
 };
 
 Player.prototype.moveUp = function() {
-  this.y += 1;
+  this.y -= 1;
 };
 
 Player.prototype.moveDown = function() {
-  this.y -= 1;
+  this.y += 1;
 };
 
 Player.prototype.moveRight = function() {
@@ -31,5 +31,5 @@ Player.prototype.moveLeft = function() {
 
 Player.prototype.draw = function() {
   this.context.fillStyle = "rgba(0, 0, 200, 0.5)";
-  this.context.fillRect (this.x, this.y, this.x + 55, this.y + 50);
+  this.context.fillRect(this.x, this.y, 32, 32);
 };

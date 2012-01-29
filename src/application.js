@@ -6,17 +6,22 @@
   // 3. Start game rendering and updating process on each frame
   //
 
-  // setup events for game
-  window.addEventListener('keyup', function(event) { Key.onKeyup(event); }, false);
-  window.addEventListener('keydown', function(event) { Key.onKeydown(event); }, false);
+  global.onload = function() {
+    // setup events for game
+    global.addEventListener('keyup', function(event) { Key.onKeyup(event); }, false);
+    global.addEventListener('keydown', function(event) { Key.onKeydown(event); }, false);
 
-  var canvas = document.getElementById('canvas-container');
-  var context = canvas.getContext('2d');
+    var canvas = document.getElementById('canvas-container');
+    var context = canvas.getContext('2d');
 
-  Game.init(context, {
-    WIDHT:  640,
-    HEIGHT: 480
-  });
+    var game = new Game(context, {
+      width:  canvas.width,
+      height: canvas.height
+    });
 
-  global.onEachFrame(Game.run);
+    global.onEachFrame(function() {
+      game.run.call(game);
+    });
+  };
+
 })(window);
