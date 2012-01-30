@@ -1,7 +1,7 @@
 var Game = function(context, options) {
   options = options || {};
 
-  this.entities = [];
+  this.bullets = [];
   this.maps = [];
 
   this.context = context;
@@ -23,16 +23,16 @@ Game.prototype.draw = function(interpolation) {
 
   this.player.draw(interpolation);
 
-  for(var i = 0; i < this.entities.length; i++) {
-    this.entities[i].draw(interpolation);
+  for(var i = 0; i < this.bullets.length; i++) {
+    this.bullets[i].draw(interpolation);
   }
 };
 
 Game.prototype.update = function() {
   this.player.update();
 
-  for(var i = 0; i < this.entities.length; i++) {
-    this.entities[i].update();
+  for(var i = 0; i < this.bullets.length; i++) {
+    this.bullets[i].update();
   }
 };
 

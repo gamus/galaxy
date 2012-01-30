@@ -4,6 +4,7 @@ var Player = function(game) {
   this.width = 65;
   this.height = 85;
   this.step = 5;
+
   // setup startup position for player
   this.x = this.game.width / 2;
   this.y = this.game.height - this.height;
@@ -29,7 +30,14 @@ Player.prototype.update = function() {
   if (Key.isDown(Key.LEFT)) this.moveLeft();
   if (Key.isDown(Key.DOWN)) this.moveDown();
   if (Key.isDown(Key.RIGHT)) this.moveRight();
+  if (Key.isDown(Key.SPACE)) this.shoot();
   this.ensurePosition();
+};
+
+Player.prototype.shoot = function() {
+  Key.remove(Key.SPACE);
+
+  this.game.bullets.push(new Bullet(this, { x: this.x + this.width/2, y: this.y }));
 };
 
 Player.prototype.moveUp = function() {

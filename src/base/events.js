@@ -5,6 +5,7 @@ var Key = {
   UP: 38,
   RIGHT: 39,
   DOWN: 40,
+  SPACE: 32,
 
   isDown: function(keyCode) {
     return this._pressed[keyCode];
@@ -15,6 +16,10 @@ var Key = {
   },
 
   onKeyup: function(event) {
-    delete this._pressed[event.keyCode];
+    this.remove(event.keyCode);
+  },
+
+  remove: function(key) {
+    delete this._pressed[key];
   }
 };
