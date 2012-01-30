@@ -3,6 +3,8 @@ var Player = function(game) {
   this.context = this.game.context;
   this.x = 0;
   this.y = 0;
+  this.width = 65;
+  this.height = 85;
   this.step = 5;
 
   this.key = Key.UP;
@@ -15,8 +17,8 @@ var Player = function(game) {
 
   this.sprite = new Sprite(this.context, {
     url: './images/ship.png',
-    width: 65,
-    height: 85,
+    width: this.width,
+    height: this.height,
     map: map
   });
 };
@@ -26,6 +28,7 @@ Player.prototype.update = function() {
   if (Key.isDown(Key.LEFT)) this.moveLeft();
   if (Key.isDown(Key.DOWN)) this.moveDown();
   if (Key.isDown(Key.RIGHT)) this.moveRight();
+  this.ensurePosition();
 };
 
 Player.prototype.moveUp = function() {
@@ -48,9 +51,18 @@ Player.prototype.moveLeft = function() {
   this.x -= this.step;
 };
 
+Player.prototype.ensurePosition = function() {
+  if (this.x <= 0) this.x = 0;
+  if (this.y <= 0) this.y = 0;
+  if (this.x >= this.game.width - this.width) this.x = this.game.width - this.width;
+  if (this.y <= (this.game.height - this.height) / 2) this.y = (this.game.height - this.height) / 2;
+  if (this.y >= this.game.height - this.height) this.y = this.game.height - this.height;
+};
+
 Player.prototype.draw = function() {
   this.context.save();
   this.context.translate(this.x, this.y);
   this.sprite.draw(this.key);
   this.context.restore();
 };
+
