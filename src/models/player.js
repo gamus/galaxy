@@ -1,11 +1,12 @@
 var Player = function(game) {
   this.game = game;
   this.context = this.game.context;
-  this.x = 0;
-  this.y = 0;
   this.width = 65;
   this.height = 85;
   this.step = 5;
+  // setup startup position for player
+  this.x = this.game.width / 2;
+  this.y = this.game.height - this.height;
 
   this.key = Key.UP;
 
