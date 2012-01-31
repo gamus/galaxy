@@ -12,10 +12,11 @@ var Player = function(game) {
   this.key = Key.UP;
 
   var map = {};
-  map[Key.LEFT]  = { x: 83,  y: 0 };
-  map[Key.RIGHT] = { x: 156, y: 0 };
-  map[Key.UP]    = { x: 10,  y: 0 };
-  map[Key.DOWN]  = { x: 10,  y: 0 };
+  map[Key.LEFT]   = { x: 83,  y: 0 };
+  map[Key.RIGHT]  = { x: 156, y: 0 };
+  map[Key.UP]     = { x: 10,  y: 0 };
+  map[Key.DOWN]   = { x: 10,  y: 0 };
+  map[Key.SPACE]  = { x: 10,  y: 0 };
 
   this.sprite = new Sprite(this.context, {
     url: './images/ship.png',

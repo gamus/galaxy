@@ -2,7 +2,12 @@ var Game = function(context, options) {
   options = options || {};
 
   this.bullets = [];
-  this.maps = [];
+  this.enemies = [];
+
+  // TODO: place levels into separate models like Level
+  // for working generating level world using simple 
+  // methods.
+  this.levels = [];
 
   this.context = context;
 
@@ -10,9 +15,14 @@ var Game = function(context, options) {
   this.height = options.height || 480;
 
   this.initializeModels();
+  this.initializeEnemies();
 };
 
 Game.FPS = 60;
+
+Game.prototype.initializeEnemies = function() {
+  this.enemies.push(new Enemy(this));
+};
 
 Game.prototype.initializeModels = function() {
   this.player = new Player(this);
@@ -23,6 +33,10 @@ Game.prototype.draw = function(interpolation) {
 
   this.player.draw(interpolation);
 
+  for(var i = 0; i < this.enemies.length; i++) {
+    this.enemies[i].draw(interpolation);
+  }
+
   for(var i = 0; i < this.bullets.length; i++) {
     this.bullets[i].draw(interpolation);
   }
@@ -30,6 +44,10 @@ Game.prototype.draw = function(interpolation) {
 
 Game.prototype.update = function() {
   this.player.update();
+
+  for(var i = 0; i < this.enemies.length; i++) {
+    this.enemies[i].update();
+  }
 
   for(var i = 0; i < this.bullets.length; i++) {
     this.bullets[i].update();
