@@ -1,12 +1,16 @@
-var Enemy = function(game) {
+var Enemy = function(game, options) {
   this.game = game;
   this.context = this.game.context;
 
-  var map = {};
-  map['default'] = { x: 0, y: 0 };
-
   this.width = 45;
   this.height = 52;
+
+  // Startup positions should be set via level model.
+  this.x = options.x || (options.positionX * this.width);
+  this.y = options.y || (options.positionY * this.height);
+
+  var map = {};
+  map['default'] = { x: 0, y: 0 };
 
   this.sprite = new Sprite(this.context, {
     url: './images/enemy.gif',
@@ -14,16 +18,26 @@ var Enemy = function(game) {
     height: this.height,
     map: map
   });
+
+  // This variable for creating circular movements for group of enimies.
+  this.iterator = 0;
+  this.step = 2;
 };
 
 Enemy.prototype.update = function() {
-  // TODO: here I should place logic of enemy movements
-  // because it's really the main part of generic AI force. :)
+  if (this.iterator >= 100) {
+    this.step = this.step < 0 ? 2 : -2;
+    this.iterator = 0;
+  } else {
+    this.iterator += 1;
+  }
+
+  this.x += this.step;
 };
 
 Enemy.prototype.draw = function(interpolation) {
   this.context.save();
-  this.context.translate(Math.random() * 10, 0);
+  this.context.translate(this.x, this.y);
   this.sprite.draw('default');
   this.context.restore();
 };

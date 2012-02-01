@@ -38,7 +38,10 @@ Player.prototype.update = function() {
 Player.prototype.shoot = function() {
   Key.remove(Key.SPACE);
 
-  this.game.bullets.push(new Bullet(this, { x: this.x + this.width/2, y: this.y }));
+  this.game.bullets.push(new Bullet(this, {
+    x: this.x + this.width/2,
+    y: this.y
+  }));
 };
 
 Player.prototype.moveUp = function() {

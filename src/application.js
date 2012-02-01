@@ -19,6 +19,11 @@
       height: canvas.height
     });
 
+    // Generate levesl for game.
+    Levels.generate(game);
+
+    game.init();
+
     global.onEachFrame(function() {
       game.run.call(game);
     });

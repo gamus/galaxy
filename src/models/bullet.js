@@ -23,6 +23,17 @@ var Bullet = function(player, options) {
 
 Bullet.prototype.update = function() {
   this.y -= 5;
+
+  if(this.y < 0) {
+    this.game.bullets.remove(this);
+  }
+
+  this.collisions();
+};
+
+Bullet.prototype.collisions = function() {
+  for(var i = 0; i < this.game.enemies.length; i++) {
+  }
 };
 
 Bullet.prototype.draw = function() {
