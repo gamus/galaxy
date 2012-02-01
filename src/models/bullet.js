@@ -32,7 +32,15 @@ Bullet.prototype.update = function() {
 };
 
 Bullet.prototype.collisions = function() {
-  for(var i = 0; i < this.game.enemies.length; i++) {
+  var enemies = this.game.enemies.clone();
+  for(var i = 0; i < enemies.length; i++) {
+    var enemy = enemies[i];
+
+    if (Math.abs((this.y + this.height / 2) - (enemy.y + enemy.height / 2)) <= 10 &&
+        Math.abs((this.x + this.width / 2) - (enemy.x + enemy.width / 2)) <= 10) {
+
+      this.game.enemies.remove(enemy);
+    }
   }
 };
 

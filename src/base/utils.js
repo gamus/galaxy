@@ -7,3 +7,7 @@ Array.prototype.remove = function(object) {
   }
   return object;
 };
+
+Array.prototype.clone = function() {
+  return this.slice(0);
+};
