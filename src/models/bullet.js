@@ -36,10 +36,14 @@ Bullet.prototype.collisions = function() {
   for(var i = 0; i < enemies.length; i++) {
     var enemy = enemies[i];
 
-    if (Math.abs((this.y + this.height / 2) - (enemy.y + enemy.height / 2)) <= 10 &&
-        Math.abs((this.x + this.width / 2) - (enemy.x + enemy.width / 2)) <= 10) {
+    var boomX = this.x > (enemy.x + enemy.width)
+                || enemy.x > (this.x + this.width);
+    var boomY = this.y > (enemy.y + enemy.height)
+                || enemy.y > (this.y + this.height);
 
+    if (!boomX && !boomY) {
       this.game.enemies.remove(enemy);
+      break;
     }
   }
 };

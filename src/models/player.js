@@ -33,6 +33,10 @@ Player.prototype.update = function() {
   if (Key.isDown(Key.RIGHT)) this.moveRight();
   if (Key.isDown(Key.SPACE)) this.shoot();
   this.ensurePosition();
+  this.collisions();
+};
+
+Player.prototype.collisions = function() {
 };
 
 Player.prototype.shoot = function() {
@@ -68,7 +72,6 @@ Player.prototype.ensurePosition = function() {
   if (this.x <= 0) this.x = 0;
   if (this.y <= 0) this.y = 0;
   if (this.x >= this.game.width - this.width) this.x = this.game.width - this.width;
-  if (this.y <= (this.game.height - this.height) / 2) this.y = (this.game.height - this.height) / 2;
   if (this.y >= this.game.height - this.height) this.y = this.game.height - this.height;
 };
 
