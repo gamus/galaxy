@@ -17,6 +17,18 @@ Levels.generate = function(game) {
     });
   };
 
+  var level03 = function() {
+    return new Level(game, {
+      name: 'Level 3',
+      map: [
+        [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+        [0, 1, 1, 0, 1, 1, 0, 1, 1, 0],
+        [0, 1, 1, 0, 1, 1, 0, 1, 1, 0]
+      ]
+    });
+  };
+
+  Levels.levels.push(level03);
   Levels.levels.push(level02);
   Levels.levels.push(level01);
 };

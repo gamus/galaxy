@@ -3,8 +3,8 @@ var Bullet = function(player, options) {
   this.enemies = this.game.enimies;
   this.player = player;
   this.context = player.context;
-  this.width = 8;
-  this.height = 8;
+  this.width = 16;
+  this.height = 16;
 
   // setup startup position for bulllet
   this.x = options.x;
@@ -42,10 +42,15 @@ Bullet.prototype.collisions = function() {
                 || enemy.y > (this.y + this.height);
 
     if (!boomX && !boomY) {
-      this.game.enemies.remove(enemy);
+      enemy.die();
+      this.die();
       break;
     }
   }
+};
+
+Bullet.prototype.die = function() {
+  this.game.bullets.remove(this);
 };
 
 Bullet.prototype.draw = function() {

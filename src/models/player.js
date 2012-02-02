@@ -24,6 +24,16 @@ var Player = function(game) {
     height: this.height,
     map: map
   });
+
+  this.life = 10;
+};
+
+Player.prototype.die = function() {
+  this.life -= 1;
+  if (this.life === 0) {
+    // Place there label drawing with game over information.
+    console.log("end game");
+  }
 };
 
 Player.prototype.update = function() {

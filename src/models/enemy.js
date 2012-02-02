@@ -22,6 +22,19 @@ var Enemy = function(game, options) {
   // This variable for creating circular movements for group of enimies.
   this.iterator = 0;
   this.step = 2;
+
+  this.life = 5;
+  this.scale = 1;
+  this.scaleStep = 0.05;
+};
+
+Enemy.prototype.die = function() {
+  this.life -= 1;
+  this.scale -= this.scaleStep;
+  this.sprite.scale(this.scale);
+  if (this.life === 0) {
+    this.game.enemies.remove(this);
+  }
 };
 
 Enemy.prototype.update = function() {
