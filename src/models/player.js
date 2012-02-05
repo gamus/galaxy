@@ -1,9 +1,10 @@
 var Player = function(game) {
   this.game = game;
   this.context = this.game.context;
-  this.width = 65;
-  this.height = 85;
+  this.width = 84;
+  this.height = 49;
   this.step = 5;
+  this.DEFAULT_STEP = 5;
 
   // setup startup position for player
   this.x = this.game.width / 2;
@@ -12,11 +13,11 @@ var Player = function(game) {
   this.key = Key.UP;
 
   var map = {};
-  map[Key.LEFT]   = { x: 83,  y: 0 };
-  map[Key.RIGHT]  = { x: 156, y: 0 };
-  map[Key.UP]     = { x: 10,  y: 0 };
-  map[Key.DOWN]   = { x: 10,  y: 0 };
-  map[Key.SPACE]  = { x: 10,  y: 0 };
+  map[Key.LEFT]   = { x: 0,  y: 0 };
+  map[Key.RIGHT]  = { x: 0,  y: 0 };
+  map[Key.UP]     = { x: 0,  y: 0 };
+  map[Key.DOWN]   = { x: 0,  y: 0 };
+  map[Key.SPACE]  = { x: 0,  y: 0 };
 
   this.sprite = new Sprite(this.context, {
     url: './images/ship.png',
@@ -26,23 +27,23 @@ var Player = function(game) {
   });
 
   this.life = 10;
+
+  this.velocityX = 0;
+  this.velocityY = 0;
 };
 
 Player.prototype.die = function() {
-  this.life -= 1;
-  if (this.life === 0) {
-    // Place there label drawing with game over information.
-    console.log("end game");
-  }
+  // Place there label drawing with game over information.
+  console.log("end game");
 };
 
 Player.prototype.update = function() {
-  if (Key.isDown(Key.UP)) this.moveUp();
-  if (Key.isDown(Key.LEFT)) this.moveLeft();
-  if (Key.isDown(Key.DOWN)) this.moveDown();
-  if (Key.isDown(Key.RIGHT)) this.moveRight();
-  if (Key.isDown(Key.SPACE)) this.shoot();
   this.ensurePosition();
+
+  this.x += this.game.joystick.deltaX() / 10;
+  this.y += this.game.joystick.deltaY() / 10;
+
+  if (Key.isDown(Key.SPACE)) this.shoot();
   this.collisions();
 };
 
@@ -53,33 +54,13 @@ Player.prototype.shoot = function() {
   Key.remove(Key.SPACE);
 
   this.game.bullets.push(new Bullet(this, {
-    x: this.x + this.width/2,
+    x: this.x + this.width/2 - 4,
     y: this.y
   }));
 };
 
-Player.prototype.moveUp = function() {
-  this.key = Key.UP;
-  this.y -= this.step;
-};
-
-Player.prototype.moveDown = function() {
-  this.key = Key.DOWN;
-  this.y += this.step;
-};
-
-Player.prototype.moveRight = function() {
-  this.key = Key.RIGHT;
-  this.x += this.step;
-};
-
-Player.prototype.moveLeft = function() {
-  this.key = Key.LEFT;
-  this.x -= this.step;
-};
-
 Player.prototype.ensurePosition = function() {
-  if (this.x <= 0) this.x = 0;
+  if (this.x < 0) this.x = 0;
   if (this.y <= 0) this.y = 0;
   if (this.x >= this.game.width - this.width) this.x = this.game.width - this.width;
   if (this.y >= this.game.height - this.height) this.y = this.game.height - this.height;

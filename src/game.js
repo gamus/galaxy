@@ -11,6 +11,7 @@ var Game = function(context, options, callback) {
 
   this.context = context;
 
+  this.joystick = options.joystick;
   this.width = options.width || 640;
   this.height = options.height || 480;
 

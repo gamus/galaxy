@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="./images/enemy01.png"/>
+
+    <link rel="stylesheet" href="tetris.css" type="text/css" media="screen, mobile" title="main" charset="utf-8">
+
     <title>Galaxy</title>
+
+    <!-- load third party libraries -->
+    <script src='./lib/virtualjoystick.js' type='application/javascript'></script>
 
     <!-- load base classes for events and animations -->
     <script src='./src/base/animation.js' type='application/javascript'></script>
@@ -11,6 +22,11 @@
 
     <!-- load models of game -->
     <script src='./src/models/enemy.js' type='application/javascript'></script>
+    <script src='./src/models/enemies/enemy1.js' type='application/javascript'></script>
+    <script src='./src/models/enemies/enemy2.js' type='application/javascript'></script>
+    <script src='./src/models/enemies/enemy3.js' type='application/javascript'></script>
+    <script src='./src/models/enemies/enemy4.js' type='application/javascript'></script>
+    <script src='./src/models/enemies/enemy5.js' type='application/javascript'></script>
     <script src='./src/models/player.js' type='application/javascript'></script>
     <script src='./src/models/bullet.js' type='application/javascript'></script>
     <script src='./src/models/level.js' type='application/javascript'></script>
@@ -21,10 +37,13 @@
 
     <!-- start game on the complete page loading -->
     <script src='./src/application.js' type='application/javascript'></script>
+
   </head>
 
   <body>
-    <canvas id='canvas-container' width='640' height='480'></canvas>
+    <div id='container'>
+      <canvas id='canvas-container' width='320' height='460'></canvas>
+    </div>
   </body>
 
 </html

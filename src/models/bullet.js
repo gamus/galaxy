@@ -3,8 +3,8 @@ var Bullet = function(player, options) {
   this.enemies = this.game.enimies;
   this.player = player;
   this.context = player.context;
-  this.width = 16;
-  this.height = 16;
+  this.width = 8;
+  this.height = 8;
 
   // setup startup position for bulllet
   this.x = options.x;

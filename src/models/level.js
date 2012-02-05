@@ -8,8 +8,6 @@ var Level = function(game, options) {
   this.generate();
 };
 
-Level.ENEMY = 1;
-
 // Generate collection of enemies for setting on the certain positions
 Level.prototype.generate = function() {
   for(var i = 0; i < this.map.length; i++) {
@@ -17,11 +15,26 @@ Level.prototype.generate = function() {
 
     for(var j = 0; j < line.length; j++) {
       var element = line[j];
-      if (element === Level.ENEMY) {
-        this.enemies.push(new Enemy(this.game, {
-          positionX: j,
-          positionY: i
-        }));
+      var options = {
+        positionX: j,
+        positionY: i
+      };
+      switch(element) {
+        case 1:
+          this.enemies.push(new Enemy1(this.game, options));
+          break;
+        case 2:
+          this.enemies.push(new Enemy2(this.game, options));
+          break;
+        case 3:
+          this.enemies.push(new Enemy3(this.game, options));
+          break;
+        case 4:
+          this.enemies.push(new Enemy4(this.game, options));
+          break;
+        case 5:
+          this.enemies.push(new Enemy5(this.game, options));
+          break;
       }
     }// end for
   }// end for
