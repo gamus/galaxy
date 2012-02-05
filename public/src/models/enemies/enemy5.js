@@ -28,29 +28,4 @@ var Enemy5 = function(game, options) {
   this.scaleStep = 0.05;
 };
 
-Enemy5.prototype.die = function() {
-  this.life -= 1;
-  this.scale -= this.scaleStep;
-  this.sprite.scale(this.scale);
-  if (this.life === 0) {
-    this.game.enemies.remove(this);
-  }
-};
-
-Enemy5.prototype.update = function() {
-  if (this.iterator >= 50) {
-    this.step = this.step < 0 ? 2 : -2;
-    this.iterator = 0;
-  } else {
-    this.iterator += 1;
-  }
-
-  this.x += this.step;
-};
-
-Enemy5.prototype.draw = function(interpolation) {
-  this.context.save();
-  this.context.translate(this.x, this.y);
-  this.sprite.draw('default');
-  this.context.restore();
-};
+extend(Enemy5, Enemy);

@@ -11,3 +11,10 @@ Array.prototype.remove = function(object) {
 Array.prototype.clone = function() {
   return this.slice(0);
 };
+
+function extend(B, A){
+  function I(){};
+  I.prototype = A.prototype;
+  B.prototype = new I;
+  B.prototype.constructor = B;
+};
