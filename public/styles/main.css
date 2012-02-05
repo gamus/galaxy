@@ -1,0 +1,6 @@
+#container {
+  width: 320px;
+  height: 460px;
+  margin: 0 auto;
+  background: url(../images/stars.gif) repeat;
+}
