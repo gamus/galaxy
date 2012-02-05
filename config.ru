@@ -7,8 +7,10 @@ end
 
 map '/application.manifest' do
   offline = Rack::Offline.new :cache => true, :root => "public" do
-    Dir[File.join(settings.public_folder, "**/*")].each do |file|
-      cache file.sub(File.join(settings.public_folder, ""), "")
+    ["images/*", "lib/*", "src/*", "styles/*"].each do |folder|
+      Dir[File.join(settings.public_folder, folder)].each do |file|
+        cache file.sub(File.join(settings.public_folder, ""), "")
+      end
     end
     network '/'
   end
