@@ -1,3 +1,6 @@
+*, body { padding: 0px; margin: 0px; border: 0px; vertical-align: baseline; }
+body { line-height: 1px; }
+
 #container {
   width: 320px;
   height: 460px;
