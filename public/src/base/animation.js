@@ -13,7 +13,7 @@
   })();
 
   onEachFrame = function(callback) {
-    var _cb = function() { callback(); requestAnimationFrame(_cb); };
+    var _cb = function() { callback(); requestAnimFrame(_cb); };
     _cb();
   };
 
