@@ -1,8 +1,8 @@
 var Player = function(game) {
   this.game = game;
   this.context = this.game.context;
-  this.width = 84;
-  this.height = 49;
+  this.width = 35;
+  this.height = 35;
   this.step = 5;
   this.DEFAULT_STEP = 5;
 
