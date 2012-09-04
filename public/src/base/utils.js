@@ -18,3 +18,9 @@ function extend(B, A){
   B.prototype = new I;
   B.prototype.constructor = B;
 };
+
+var bind = function(fn, me){
+  return function() {
+    return fn.apply(me, arguments);
+  };
+};

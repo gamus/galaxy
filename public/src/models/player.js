@@ -28,11 +28,10 @@ var Player = function(game) {
 
   this.life = 10;
 
-  this.velocityX = 0;
-  this.velocityY = 0;
+  this.next_shoot_time = new Date().getTime();
+  this.shoot_delay = 400;
 
-  this.nextShootTime = new Date().getTime();
-  this.shootDelay = 400;
+  this.input = new Keyboard();
 };
 
 Player.prototype.die = function() {
@@ -43,10 +42,8 @@ Player.prototype.die = function() {
 Player.prototype.update = function() {
   this.ensurePosition();
 
-  this.x += this.game.joystick.deltaX() / 10;
-  this.y += this.game.joystick.deltaY() / 10;
+  this.input.update(this);
 
-  if (Key.isDown(Key.SPACE)) this.shoot();
   this.collisions();
 };
 
@@ -56,8 +53,8 @@ Player.prototype.collisions = function() {
 Player.prototype.shoot = function() {
   Key.remove(Key.SPACE);
 
-  if (this.nextShootTime < new Date().getTime()) {
-    this.nextShootTime = new Date().getTime() + this.shootDelay;
+  if (this.next_shoot_time < new Date().getTime()) {
+    this.next_shoot_time = new Date().getTime() + this.shoot_delay;
 
     this.game.bullets.push(new Bullet(this, {
       x: this.x + this.width/2 - 4,

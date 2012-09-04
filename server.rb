@@ -10,4 +10,3 @@ end
 get '/about' do
   'author: alex.korsak@gmail.com'
 end
-

@@ -9,11 +9,13 @@
     <link rel="apple-touch-icon" sizes="72x72" href="images/enemy01.png" />
 
     <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link rel="stylesheet" media="all and (orientation:portrait)" href="styles/portrait.css">
+    <link rel="stylesheet" media="all and (orientation:landscape)" href="styles/landscape.css">
 
     <title>Galaxy</title>
 
-    <!-- load third party libraries -->
-    <script src='./lib/virtualjoystick.js' type='application/javascript'></script>
+    <!-- initialize source environment -->
+    <script src="./src/modules.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- load base classes for events and animations -->
     <script src='./src/base/animation.js' type='application/javascript'></script>
@@ -35,10 +37,10 @@
 
     <!-- configure game objects -->
     <script src='./src/game.js' type='application/javascript'></script>
+    <script src='./src/keyboard.js' type='application/javascript'></script>
 
     <!-- start game on the complete page loading -->
     <script src='./src/application.js' type='application/javascript'></script>
-
   </head>
 
   <body>
@@ -46,5 +48,5 @@
       <canvas id='canvas-container' width='320' height='460'></canvas>
     </div>
   </body>
+</html>
 
-</html

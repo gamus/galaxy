@@ -11,7 +11,6 @@ var Game = function(context, options, callback) {
 
   this.context = context;
 
-  this.joystick = options.joystick;
   this.width = options.width || 640;
   this.height = options.height || 480;
 
@@ -19,6 +18,22 @@ var Game = function(context, options, callback) {
 };
 
 Game.FPS = 60;
+Game.constants = function(key) {
+  this.options = this.options || {};
+
+  return this.options[key];
+};
+
+Game.options = {
+  fire_button: {
+    width: 10,
+    height: 10
+  },
+  bullet: {
+    width: 8,
+    height: 8
+  }
+};
 
 Game.prototype.init = function() {
   // By default we are selectin the first level.
