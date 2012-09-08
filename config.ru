@@ -14,6 +14,7 @@ map '/application.manifest' do
         cache file.sub(File.join(settings.public_folder, ""), "")
       end
     end
+
     network '/'
   end
 
