@@ -1,22 +1,13 @@
 require 'rack/offline'
-require './server'
+require 'rack/coffee'
+require './app'
 
-map '/' do
-  run Sinatra::Application
-end
+require 'rack/coffee_compiler'
 
-map '/application.manifest' do
-  offline = Rack::Offline.new :cache => true, :root => "public" do
-    ["images/*", "lib/*", "src/*", "src/models/*",
-      "src/models/enemies/*", "src/base/*", "styles/*"].each do |folder|
+use Rack::CoffeeCompiler,
+  :source_dir => 'app/coffee',
+  :url => '/js',
+  :alert_on_error => true
 
-      Dir[File.join(settings.public_folder, folder)].each do |file|
-        cache file.sub(File.join(settings.public_folder, ""), "")
-      end
-    end
+run App
 
-    network '/'
-  end
-
-  run offline
-end
