@@ -1,10 +1,12 @@
 class Enemy1 extends Enemy
   constructor: (options) ->
+    super options
+
     @sprite = new Sprite(
       url: "./images/enemy01.png"
       width: @width
       height: @height
-      map: map
+      map: @map
     )
 
 window.Enemy1 = Enemy1

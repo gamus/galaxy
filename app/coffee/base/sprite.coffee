@@ -1,6 +1,5 @@
-Sprite = (context, options) ->
+Sprite = (options) ->
   options = options or {}
-  @context = context
   @image = new Image()
   @image.src = options.url
   @width = options.width
@@ -13,10 +12,10 @@ Sprite::scale = (times) ->
 
 Sprite::draw = (step) ->
   pos = @map[step]
-  @context.save()
-  @context.scale @times, @times
-  @context.drawImage @image, pos.x, pos.y, @width, @height, 0, 0, @width, @height
-  @context.restore()
+  context.save()
+  context.scale @times, @times
+  context.drawImage @image, pos.x, pos.y, @width, @height, 0, 0, @width, @height
+  context.restore()
 
 window.Sprite = Sprite
 

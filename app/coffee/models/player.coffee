@@ -13,7 +13,7 @@ class Player
     map[Key.DOWN] = x: 0, y: 0
     map[Key.SPACE] = x: 0, y: 0
 
-    @sprite = new Sprite(context,
+    @sprite = new Sprite(
       url: "./images/ship.png"
       width: @width
       height: @height

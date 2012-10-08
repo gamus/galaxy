@@ -7,8 +7,8 @@ class Enemy
 
     @x = options.x or (options.positionX * @width)
     @y = options.y or (options.positionY * @height)
-    map = {}
-    map["default"] = x: 0, y: 0
+    @map = {}
+    @map["default"] = x: 0, y: 0
 
     @iterator = 0
     @step = 2
@@ -25,7 +25,7 @@ class Enemy
     @sprite.draw "default"
     context.restore()
 
-  update = ->
+  update: ->
     if @iterator >= 50
       @step = (if @step < 0 then 2 else -2)
       @iterator = 0

@@ -11,8 +11,8 @@ class Game
     context.clearRect 0, 0, @width, @height
 
     @player.draw interpolation
-    enemy.draw interpolation for enemy in @enemies
-    bullet.draw interpolation for bullet in @bullets
+    enemy.draw interpolation for enemy in (@enemies or [])
+    bullet.draw interpolation for bullet in (@bullets or [])
 
   start: ->
     @player = new Player(@)

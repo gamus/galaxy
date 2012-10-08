@@ -3,6 +3,7 @@ class Level
   constructor: (options) ->
     @name = options.name
     @map = options.map
+    @enemies = []
     @generate()
 
   generate: ->
