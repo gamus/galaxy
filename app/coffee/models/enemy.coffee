@@ -2,6 +2,20 @@ class Enemy
   constructor: (options) ->
     @options = options
 
+    @width = 35
+    @height = 35
+
+    @x = options.x or (options.positionX * @width)
+    @y = options.y or (options.positionY * @height)
+    map = {}
+    map["default"] = x: 0, y: 0
+
+    @iterator = 0
+    @step = 2
+    @life = 5
+    @scale = 1
+    @scaleStep = 0.05
+
   die: ->
     game.enemies.remove @
 

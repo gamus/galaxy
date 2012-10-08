@@ -22,10 +22,11 @@ window.onload = ->
     width: canvas.width
     height: canvas.height
   )
-  game.start()
 
   window.context = canvas.getContext("2d")
   window.game = game
+
+  game.start()
 
   window.onEachFrame game.run()
 

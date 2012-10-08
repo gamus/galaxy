@@ -1,13 +1,11 @@
 class Game
-  construct: (levels, options) ->
+  constructor: (levels, options) ->
     @FPS = 60
     @levels = levels
 
     options = options or {}
-
     @width = options.width or 640
     @height = options.height or 480
-    @player = new Player(this)
 
   draw: (interpolation) ->
     context.clearRect 0, 0, @width, @height
@@ -17,12 +15,12 @@ class Game
     bullet.draw interpolation for bullet in @bullets
 
   start: ->
+    @player = new Player(@)
     @level = @levels.build(0)
     @enemies = @level.enemies
 
   update: ->
     @player.update()
-
     enemy.update() for enemy in (@enemies or [])
     bullet.update() for bullet in (@bullets or [])
 

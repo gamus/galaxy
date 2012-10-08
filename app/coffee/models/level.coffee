@@ -5,7 +5,7 @@ class Level
     @map = options.map
     @generate()
 
-  generate = ->
+  generate: ->
     for row, i in @map
       for column, j in row
         options =
