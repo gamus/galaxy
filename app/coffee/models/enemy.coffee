@@ -20,3 +20,4 @@ class Enemy
       @iterator += 1
     @x += @step
 
+window.Enemy = Enemy

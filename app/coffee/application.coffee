@@ -5,23 +5,20 @@
 #
 
 window.onload = ->
-  # setup events for game
   window.addEventListener "keyup", ((event) ->
     Key.onKeyup event
   ), false
+
   window.addEventListener "keydown", ((event) ->
     Key.onKeydown event
   ), false
+
   canvas = document.getElementById("canvas-container")
   context = canvas.getContext("2d")
-  game = new Game(context,
+  game = new Game(
     width: canvas.width
     height: canvas.height
   )
 
-  # Generate levesl for game.
-  Levels.generate game
-  game.init()
-  window.onEachFrame ->
-    game.run.call game
+  window.onEachFrame game.run()
 

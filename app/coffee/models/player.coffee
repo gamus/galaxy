@@ -1,15 +1,11 @@
 class Player
   constructor: (game) ->
     @game = game
-    @context = @game.context
-    @width = 35
-    @height = 35
-    @step = 5
-    @DEFAULT_STEP = 5
+    [@width, @height, @step] = [35, 35, 5]
 
-    # setup startup position for player
     @x = @game.width / 2
     @y = @game.height - @height
+
     @key = Key.UP
     map = {}
     map[Key.LEFT] = x: 0, y: 0
@@ -29,15 +25,15 @@ class Player
     @shoot_delay = 400
     @input = new Keyboard()
 
-  die = ->
+  die: ->
     # Place there label drawing with game over information.
     console.log "end game"
 
-  update = ->
+  update: ->
     @ensurePosition()
     @input.update this
 
-  shoot = ->
+  shoot: ->
     Key.remove Key.SPACE
     if @next_shoot_time < new Date().getTime()
       @next_shoot_time = new Date().getTime() + @shoot_delay
@@ -46,15 +42,17 @@ class Player
         y: @y
       )
 
-  ensurePosition = ->
+  ensurePosition: ->
     @x = 0  if @x < 0
     @y = 0  if @y <= 0
     @x = @game.width - @width  if @x >= @game.width - @width
     @y = @game.height - @height  if @y >= @game.height - @height
 
-  draw = ->
+  draw: ->
     @context.save()
     @context.translate @x, @y
     @sprite.draw @key
     @context.restore()
+
+window.Player = Player
 
