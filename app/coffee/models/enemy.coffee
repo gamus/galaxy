@@ -1,16 +1,15 @@
 class Enemy
-  constructor: (game, options) ->
-    @game = game
-    @context = @game.context
+  constructor: (options) ->
+    @options = options
 
-  die = ->
-    @game.enemies.remove this
+  die: ->
+    game.enemies.remove @
 
-  draw = ->
-    @context.save()
-    @context.translate @x, @y
+  draw: ->
+    context.save()
+    context.translate @x, @y
     @sprite.draw "default"
-    @context.restore()
+    context.restore()
 
   update = ->
     if @iterator >= 50
@@ -21,3 +20,4 @@ class Enemy
     @x += @step
 
 window.Enemy = Enemy
+

@@ -1,7 +1,7 @@
 # Map should have default width and height as 10 objects
 class Level
-  constructor: (game, options) ->
-    @game = game
+  constructor: (options) ->
+    @name = options.name
     @map = options.map
     @generate()
 
@@ -12,6 +12,8 @@ class Level
           positionX: j
           positionY: i
 
-        enemy = new window["Enemy#{column}"](@game, options)
+        enemy = new window["Enemy#{column}"](options)
         @enemies.push enemy
+
+window.Level = Level
 

@@ -1,25 +1,27 @@
-Levels = []
-Levels.generate = (game) ->
-  Levels.levels = []
-  level01 = ->
-    new Level(game,
+class Levels
+  constructor: () ->
+    @levels = []
+    @generate()
+
+  build: (index) ->
+    new Level(@levels[index])
+
+  generate: ->
+    level01 =
       name: "Level 1"
       map: [[0, 0, 0, 0, 1, 1, 0, 0, 0, 0]]
-    )
 
-  level02 = ->
-    new Level(game,
+    level02 =
       name: "Level 2"
       map: [[0, 1, 0, 0, 1, 1, 0, 0, 1, 0]]
-    )
 
-  level03 = ->
-    new Level(game,
+    level03 =
       name: "Level 3"
       map: [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]
-    )
 
-  Levels.levels.push level03
-  Levels.levels.push level02
-  Levels.levels.push level01
+    @levels.push level03
+    @levels.push level02
+    @levels.push level01
+
+window.Levels = Levels
 

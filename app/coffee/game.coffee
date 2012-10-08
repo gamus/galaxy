@@ -1,6 +1,7 @@
 class Game
-  construct: (options) ->
+  construct: (levels, options) ->
     @FPS = 60
+    @levels = levels
 
     options = options or {}
 
@@ -10,10 +11,14 @@ class Game
 
   draw: (interpolation) ->
     context.clearRect 0, 0, @width, @height
-    @player.draw interpolation
 
+    @player.draw interpolation
     enemy.draw interpolation for enemy in @enemies
     bullet.draw interpolation for bullet in @bullets
+
+  start: ->
+    @level = @levels.build(0)
+    @enemies = @level.enemies
 
   update: ->
     @player.update()

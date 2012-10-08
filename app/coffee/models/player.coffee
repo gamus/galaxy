@@ -1,10 +1,9 @@
 class Player
-  constructor: (game) ->
-    @game = game
+  constructor: () ->
     [@width, @height, @step] = [35, 35, 5]
 
-    @x = @game.width / 2
-    @y = @game.height - @height
+    @x = game.width / 2
+    @y = game.height - @height
 
     @key = Key.UP
     map = {}
@@ -37,7 +36,7 @@ class Player
     Key.remove Key.SPACE
     if @next_shoot_time < new Date().getTime()
       @next_shoot_time = new Date().getTime() + @shoot_delay
-      @game.bullets.push new Bullet(this,
+      game.bullets.push new Bullet(this,
         x: @x + @width / 2 - 4
         y: @y
       )
@@ -45,8 +44,8 @@ class Player
   ensurePosition: ->
     @x = 0  if @x < 0
     @y = 0  if @y <= 0
-    @x = @game.width - @width  if @x >= @game.width - @width
-    @y = @game.height - @height  if @y >= @game.height - @height
+    @x = game.width - @width  if @x >= game.width - @width
+    @y = game.height - @height  if @y >= game.height - @height
 
   draw: ->
     context.save()

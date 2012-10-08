@@ -14,12 +14,18 @@ window.onload = ->
   ), false
 
   canvas = document.getElementById("canvas-container")
-  window.context = canvas.getContext("2d")
+
+  levels = new Levels()
 
   game = new Game(
+    levels,
     width: canvas.width
     height: canvas.height
   )
+  game.start()
+
+  window.context = canvas.getContext("2d")
+  window.game = game
 
   window.onEachFrame game.run()
 
