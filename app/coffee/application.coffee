@@ -14,7 +14,8 @@ window.onload = ->
   ), false
 
   canvas = document.getElementById("canvas-container")
-  context = canvas.getContext("2d")
+  window.context = canvas.getContext("2d")
+
   game = new Game(
     width: canvas.width
     height: canvas.height

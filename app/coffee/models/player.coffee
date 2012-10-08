@@ -14,7 +14,7 @@ class Player
     map[Key.DOWN] = x: 0, y: 0
     map[Key.SPACE] = x: 0, y: 0
 
-    @sprite = new Sprite(@context,
+    @sprite = new Sprite(context,
       url: "./images/ship.png"
       width: @width
       height: @height
@@ -49,10 +49,10 @@ class Player
     @y = @game.height - @height  if @y >= @game.height - @height
 
   draw: ->
-    @context.save()
-    @context.translate @x, @y
+    context.save()
+    context.translate @x, @y
     @sprite.draw @key
-    @context.restore()
+    context.restore()
 
 window.Player = Player
 

@@ -9,7 +9,7 @@ class Game
     @player = new Player(this)
 
   draw: (interpolation) ->
-    @context.clearRect 0, 0, @width, @height
+    context.clearRect 0, 0, @width, @height
     @player.draw interpolation
 
     enemy.draw interpolation for enemy in @enemies
