@@ -26,7 +26,7 @@ class Game
 
   run: ->
     loops = 0
-    skipTicks = 1000 / Game.FPS
+    skipTicks = 1000 / this.FPS
     maxFrameSkip = 10
     nextGameTick = (new Date).getTime()
 
