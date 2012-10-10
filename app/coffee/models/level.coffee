@@ -13,7 +13,7 @@ class Level
           positionX: j
           positionY: i
 
-        enemy = new window["Enemy#{column}"](options)
+        enemy = new window["Enemy#{column + 1}"](options)
         @enemies.push enemy
 
 window.Level = Level

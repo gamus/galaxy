@@ -19,9 +19,9 @@ class Levels
       name: "Level 3"
       map: [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]
 
-    @levels.push level03
-    @levels.push level02
     @levels.push level01
+    @levels.push level02
+    @levels.push level03
 
 window.Levels = Levels
 

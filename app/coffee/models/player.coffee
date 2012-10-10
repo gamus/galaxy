@@ -1,5 +1,5 @@
 class Player
-  constructor: () ->
+  constructor: ->
     [@width, @height, @step] = [35, 35, 5]
 
     @x = game.width / 2
@@ -36,7 +36,7 @@ class Player
     Key.remove Key.SPACE
     if @next_shoot_time < new Date().getTime()
       @next_shoot_time = new Date().getTime() + @shoot_delay
-      game.bullets.push new Bullet(this,
+      game.bullets.push new Bullet(
         x: @x + @width / 2 - 4
         y: @y
       )

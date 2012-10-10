@@ -7,22 +7,25 @@ class Game
     @width = options.width or 640
     @height = options.height or 480
 
+    @enemies = []
+    @bullets = []
+
   draw: (interpolation) ->
     context.clearRect 0, 0, @width, @height
 
     @player.draw interpolation
-    enemy.draw interpolation for enemy in (@enemies or [])
-    bullet.draw interpolation for bullet in (@bullets or [])
+    enemy.draw interpolation for enemy in @enemies
+    bullet.draw interpolation for bullet in @bullets
 
   start: ->
-    @player = new Player(@)
+    @player = new Player
     @level = @levels.build(0)
     @enemies = @level.enemies
 
   update: ->
     @player.update()
-    enemy.update() for enemy in (@enemies or [])
-    bullet.update() for bullet in (@bullets or [])
+    enemy.update() for enemy in @enemies
+    bullet.update() for bullet in @bullets
 
   run: ->
     loops = 0
