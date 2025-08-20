@@ -1,5 +1,18 @@
 .DS_Store
 node_modules/
-*.js
 .env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript build output is intentionally included
+# *.js
+
+# Ruby/CoffeeScript artifacts (legacy)
+.bundle
+vendor/
+
+# IDE files
+.vscode/
+.idea/
 
